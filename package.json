@@ -30,10 +30,22 @@
     "zod": "^3.22.4",
     "@hookform/resolvers": "^3.3.2",
     "date-fns": "^2.30.0",
-    "recharts": "^2.8.0"
+    "recharts": "^2.8.0",
+    "framer-motion": "^10.16.16",
+    "react-parallax-tilt": "^1.7.181",
+    "typewriter-effect": "^2.21.0",
+    "aos": "^2.3.4",
+    "react-hot-toast": "^2.4.1",
+    "three": "^0.158.0",
+    "@react-three/fiber": "^8.15.12",
+    "@react-three/drei": "^9.92.7",
+    "locomotive-scroll": "^4.1.4",
+    "gsap": "^3.12.2"
   },
   "devDependencies": {
     "eslint": "^8.56.0",
-    "eslint-config-next": "14.0.4"
+    "eslint-config-next": "14.0.4",
+    "@types/aos": "^3.0.7",
+    "@types/three": "^0.158.3"
   }
 }
