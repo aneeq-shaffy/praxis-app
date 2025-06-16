@@ -1,192 +1,429 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Swiss Minimalism Design System */
+:root {
+  /* Monochromatic Color Palette */
+  --color-black: #000000;
+  --color-gray-dark: #333333;
+  --color-gray-medium: #666666;
+  --color-gray-light: #999999;
+  --color-gray-lighter: #F5F5F5;
+  --color-white: #FFFFFF;
+  
+  /* Golden Ratio Spacing Scale */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 26px;
+  --space-lg: 42px;
+  --space-xl: 68px;
+  --space-2xl: 110px;
+  
+  /* Typography Scale (Golden Ratio) */
+  --font-size-xs: 14px;
+  --font-size-sm: 16px;
+  --font-size-md: 20px;
+  --font-size-lg: 26px;
+  --font-size-xl: 42px;
+  
+  /* Layout Proportions */
+  --content-width: 960px;
+  --sidebar-width: 593px; /* Golden ratio of content */
+}
+
 @layer base {
   html {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  body {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    margin: 0;
+    padding: 0;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+  }
+  
+  h1 { font-size: var(--font-size-xl); }
+  h2 { font-size: var(--font-size-lg); }
+  h3 { font-size: var(--font-size-md); }
+  
+  p, span, div {
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+  }
+  
+  small {
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-light);
   }
 }
 
 @layer components {
-  .metallic-card {
-    background: linear-gradient(145deg, #E5E4E2 0%, #C0C0C0 50%, #808080 100%);
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    position: relative;
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.3),
-      inset 0 2px 4px rgba(255, 255, 255, 0.2),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  /* Swiss Grid System - 12 Column */
+  .swiss-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-lg);
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
   }
-
-  .metallic-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: inherit;
-    padding: 2px;
-    background: linear-gradient(45deg, #FFD700, #C0C0C0, #0F0F0F);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    z-index: -1;
+  
+  .swiss-grid-8 {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: var(--space-md);
   }
-
-  .gold-card {
-    background: linear-gradient(145deg, #FFD700 0%, #FFED4E 50%, #B8860B 100%);
-    box-shadow: 
-      0 8px 32px rgba(255, 215, 0, 0.4),
-      inset 0 2px 4px rgba(255, 255, 255, 0.3),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 215, 0, 0.3);
+  
+  /* Golden Ratio Layout */
+  .golden-main {
+    flex: 1.618;
   }
-
-  .silver-card {
-    background: linear-gradient(145deg, #E5E5E5 0%, #C0C0C0 50%, #808080 100%);
-    box-shadow: 
-      0 8px 32px rgba(192, 192, 192, 0.4),
-      inset 0 2px 4px rgba(255, 255, 255, 0.3),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(192, 192, 192, 0.3);
+  
+  .golden-sidebar {
+    flex: 1;
   }
-
-  .dark-metallic-card {
-    background: linear-gradient(145deg, #36454F 0%, #2C3539 50%, #0F0F0F 100%);
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.6),
-      inset 0 2px 4px rgba(255, 255, 255, 0.1),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 215, 0, 0.2);
+  
+  /* Swiss Card Component */
+  .swiss-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-black);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    transition: all 0.2s ease;
   }
-
-  .shimmer-effect {
-    position: relative;
-    overflow: hidden;
+  
+  .swiss-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
-
-  .shimmer-effect::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
+  
+  /* Swiss Button System */
+  .swiss-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    padding: 12px 24px;
+    border: 2px solid var(--color-black);
+    background: var(--color-white);
+    color: var(--color-black);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+    min-height: 48px;
+    box-sizing: border-box;
+  }
+  
+  .swiss-btn:hover {
+    background: var(--color-black);
+    color: var(--color-white);
+  }
+  
+  .swiss-btn-primary {
+    background: var(--color-black);
+    color: var(--color-white);
+  }
+  
+  .swiss-btn-primary:hover {
+    background: var(--color-white);
+    color: var(--color-black);
+  }
+  
+  /* Swiss Form Elements */
+  .swiss-input {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--font-size-sm);
+    padding: 12px var(--space-sm);
+    border: 1px solid var(--color-gray-medium);
+    background: var(--color-white);
+    color: var(--color-black);
+    min-height: 48px;
+    box-sizing: border-box;
     width: 100%;
+  }
+  
+  .swiss-input:focus {
+    outline: none;
+    border: 2px solid var(--color-black);
+  }
+  
+  .swiss-label {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    color: var(--color-black);
+    margin-bottom: var(--space-xs);
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Swiss Navigation */
+  .swiss-nav {
+    height: var(--space-xl);
+    border-bottom: 1px solid var(--color-black);
+    background: var(--color-white);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  
+  .swiss-nav-content {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.4),
-      transparent
-    );
-    animation: shimmer 2s infinite;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
-
-  .gold-text {
-    background: linear-gradient(135deg, #FFD700, #FFED4E, #B8860B);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  
+  .swiss-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-black);
+    text-decoration: none;
   }
-
-  .silver-text {
-    background: linear-gradient(135deg, #E5E5E5, #C0C0C0, #808080);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  
+  .swiss-nav-links {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: center;
   }
-
-  .metallic-button {
-    background: linear-gradient(145deg, #FFD700 0%, #FFED4E 50%, #B8860B 100%);
-    box-shadow: 
-      0 4px 15px rgba(255, 215, 0, 0.4),
-      inset 0 2px 4px rgba(255, 255, 255, 0.3),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    transition: all 0.3s ease;
+  
+  .swiss-nav-link {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-medium);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s ease;
   }
-
-  .metallic-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 
-      0 8px 25px rgba(255, 215, 0, 0.6),
-      inset 0 2px 4px rgba(255, 255, 255, 0.4),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  
+  .swiss-nav-link:hover {
+    color: var(--color-black);
   }
-
-  .achievement-badge {
-    background: radial-gradient(circle at center, #FFD700 0%, #B8860B 100%);
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
-    border: 2px solid rgba(255, 215, 0, 0.3);
+  
+  /* Swiss Typography Hierarchy */
+  .swiss-heading-xl {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    margin-bottom: var(--space-lg);
   }
-
-  .xp-bar {
-    background: linear-gradient(90deg, #C0C0C0 0%, #FFD700 100%);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  
+  .swiss-heading-lg {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-md);
   }
-
-  .metallic-nav {
-    background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(54, 69, 79, 0.95) 100%);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  
+  .swiss-heading-md {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    margin-bottom: var(--space-sm);
   }
-
-  .hero-metallic {
-    background: linear-gradient(135deg, #0F0F0F 0%, #36454F 50%, #FFD700 100%);
-    position: relative;
+  
+  .swiss-text {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-dark);
+    line-height: 1.6;
   }
-
-  .hero-metallic::before {
-    content: '';
-    position: absolute;
+  
+  .swiss-text-small {
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-medium);
+  }
+  
+  /* Swiss Layout Utilities */
+  .swiss-section {
+    padding: var(--space-2xl) 0;
+  }
+  
+  .swiss-container {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+  
+  .swiss-whitespace-lg {
+    margin-bottom: var(--space-lg);
+  }
+  
+  .swiss-whitespace-xl {
+    margin-bottom: var(--space-xl);
+  }
+  
+  /* Rule of Thirds Grid */
+  .thirds-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-lg);
+  }
+  
+  .thirds-grid-2x3 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-lg);
+  }
+  
+  /* Swiss Status Indicators */
+  .swiss-status {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    padding: 4px var(--space-xs);
+    border: 1px solid var(--color-black);
+    background: var(--color-white);
+    color: var(--color-black);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .swiss-status-active {
+    background: var(--color-black);
+    color: var(--color-white);
+  }
+  
+  /* Swiss Table */
+  .swiss-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-lg) 0;
+  }
+  
+  .swiss-table th,
+  .swiss-table td {
+    padding: var(--space-sm);
+    text-align: left;
+    border-bottom: 1px solid var(--color-gray-lighter);
+  }
+  
+  .swiss-table th {
+    font-weight: 600;
+    color: var(--color-black);
+    border-bottom: 2px solid var(--color-black);
+  }
+  
+  /* Swiss Progress Bar */
+  .swiss-progress {
+    width: 100%;
+    height: 4px;
+    background: var(--color-gray-lighter);
+    border: 1px solid var(--color-gray-light);
+  }
+  
+  .swiss-progress-fill {
+    height: 100%;
+    background: var(--color-black);
+    transition: width 0.3s ease;
+  }
+  
+  /* Swiss Modal/Dialog */
+  .swiss-modal {
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23FFD700" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
-    opacity: 0.3;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+  
+  .swiss-modal-content {
+    background: var(--color-white);
+    border: 2px solid var(--color-black);
+    padding: var(--space-xl);
+    max-width: 500px;
+    width: 90%;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .swiss-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+      padding: 0 var(--space-sm);
+    }
+    
+    .thirds-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .thirds-grid-2x3 {
+      grid-template-columns: 1fr;
+    }
+    
+    .swiss-nav-links {
+      gap: var(--space-md);
+    }
+    
+    .swiss-heading-xl {
+      font-size: var(--font-size-lg);
+    }
+  }
+  
+  /* Accessibility */
+  .swiss-btn:focus,
+  .swiss-input:focus {
+    outline: 2px solid var(--color-black);
+    outline-offset: 2px;
+  }
+  
+  /* Animations - Minimal and Functional */
+  .swiss-fade-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Print Styles */
+  @media print {
+    .swiss-nav,
+    .swiss-btn {
+      display: none;
+    }
+    
+    .swiss-card {
+      border: 1px solid var(--color-black);
+      box-shadow: none;
+    }
   }
 }
 
-/* Custom scrollbar */
+/* Custom Scrollbar - Swiss Style */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: linear-gradient(180deg, #36454F, #0F0F0F);
+  background: var(--color-gray-lighter);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #FFD700, #B8860B);
-  border-radius: 6px;
-  border: 2px solid #36454F;
+  background: var(--color-gray-medium);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #FFED4E, #FFD700);
+  background: var(--color-black);
 }
 
-/* Glow effects */
-.glow-gold {
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-}
-
-.glow-silver {
-  box-shadow: 0 0 20px rgba(192, 192, 192, 0.5);
-}
-
-/* Text shadows for metallic effect */
-.text-shadow-gold {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.5);
-}
-
-.text-shadow-silver {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(192, 192, 192, 0.5);
+/* Selection */
+::selection {
+  background: var(--color-black);
+  color: var(--color-white);
 }

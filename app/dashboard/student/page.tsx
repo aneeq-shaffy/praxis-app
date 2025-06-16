@@ -17,11 +17,7 @@ import {
   User,
   Building2,
   Zap,
-  Trophy,
-  Crown,
-  Flame,
-  TrendingUp,
-  Sparkles
+  Trophy
 } from 'lucide-react'
 
 export default function StudentDashboard() {
@@ -72,117 +68,62 @@ export default function StudentDashboard() {
     { id: 5, name: 'Ερμής Αγγελιαφόρος', description: 'Great Communicator', icon: '📨', earned: true },
   ]
 
-  const mentors = [
-    {
-      id: 1,
-      name: 'Sarah Johnson',
-      title: 'Senior Frontend Developer',
-      company: 'TechCorp Solutions',
-      rating: 4.9,
-      expertise: ['React', 'TypeScript', 'UI/UX'],
-      avatar: 'SJ'
-    },
-    {
-      id: 2,
-      name: 'Mike Chen',
-      title: 'Full Stack Engineer',
-      company: 'StartupXYZ',
-      rating: 4.8,
-      expertise: ['Node.js', 'React', 'MongoDB'],
-      avatar: 'MC'
-    }
-  ]
-
-  const availableProjects = [
-    {
-      id: 3,
-      title: 'Data Analytics Dashboard',
-      company: 'DataFlow Inc',
-      description: 'Build a comprehensive analytics dashboard for business intelligence',
-      skills: ['Python', 'React', 'D3.js'],
-      duration: '8 weeks',
-      difficulty: 'Intermediate',
-      xpReward: 800
-    },
-    {
-      id: 4,
-      title: 'Social Media Campaign Tool',
-      company: 'Marketing Pro',
-      description: 'Develop a tool for managing and analyzing social media campaigns',
-      skills: ['Vue.js', 'Node.js', 'PostgreSQL'],
-      duration: '6 weeks',
-      difficulty: 'Beginner',
-      xpReward: 600
-    }
-  ]
-
   const xpPercentage = (studentData.xp / studentData.nextLevelXP) * 100
 
   return (
-    <div className="min-h-screen bg-obsidian">
+    <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="metallic-nav">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center space-x-3">
-                <div className="w-8 h-8 gold-card rounded-full flex items-center justify-center shadow-gold animate-glow">
-                  <span className="text-obsidian font-bold text-sm">Π</span>
-                </div>
-                <span className="text-2xl font-serif font-bold gold-text text-shadow-gold">ΠΡΑΞΙΣ</span>
-              </Link>
-              <span className="text-silver">|</span>
-              <span className="text-gold font-medium">Student Academy</span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <button className="p-2 text-silver hover:text-gold transition-colors">
-                <MessageSquare className="w-5 h-5" />
-              </button>
-              <div className="w-8 h-8 gold-card rounded-full flex items-center justify-center shadow-gold">
-                <span className="text-obsidian font-bold text-sm">JS</span>
-              </div>
+      <nav className="swiss-nav">
+        <div className="swiss-nav-content">
+          <Link href="/" className="swiss-logo">
+            ΠΡΑΞΙΣ
+          </Link>
+          <div className="swiss-nav-links">
+            <span className="swiss-text-small">Student Academy</span>
+            <div className="w-8 h-8 border border-black flex items-center justify-center">
+              <span className="font-bold text-sm">JS</span>
             </div>
           </div>
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="swiss-container py-8">
         {/* Header with XP System */}
         <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-3xl font-serif font-bold gold-text text-shadow-gold mb-2">
+              <h1 className="swiss-heading-lg mb-2">
                 Welcome back, {studentData.name}!
               </h1>
-              <p className="text-silver">
+              <p className="swiss-text">
                 Continue your journey of practical excellence
               </p>
             </div>
             <div className="text-right">
               <div className="flex items-center space-x-2 mb-2">
-                <Crown className="w-5 h-5 text-gold" />
-                <span className="text-lg font-serif font-bold gold-text text-shadow-gold">{studentData.level}</span>
+                <Trophy className="w-5 h-5" />
+                <span className="font-semibold">{studentData.level}</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Flame className="w-4 h-4 text-gold animate-pulse-gold" />
-                <span className="text-sm text-silver">{studentData.streak} day streak</span>
+                <Zap className="w-4 h-4" />
+                <span className="swiss-text-small">{studentData.streak} day streak</span>
               </div>
             </div>
           </div>
           
           {/* XP Progress Bar */}
-          <div className="metallic-card p-4 rounded-xl mb-6 shimmer-effect">
+          <div className="swiss-card mb-6">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm font-medium text-obsidian">Experience Points</span>
-              <span className="text-sm font-bold text-gold">{studentData.xp} / {studentData.nextLevelXP} XP</span>
+              <span className="swiss-text-small font-medium">Experience Points</span>
+              <span className="swiss-text-small font-bold">{studentData.xp} / {studentData.nextLevelXP} XP</span>
             </div>
-            <div className="w-full bg-charcoal/50 rounded-full h-3 shadow-inset-metallic">
+            <div className="swiss-progress">
               <div 
-                className="xp-bar h-3 rounded-full transition-all duration-500 shimmer-effect"
+                className="swiss-progress-fill"
                 style={{ width: `${xpPercentage}%` }}
               ></div>
             </div>
-            <p className="text-xs text-charcoal mt-1">
+            <p className="swiss-text-small mt-1">
               {studentData.nextLevelXP - studentData.xp} XP until Τεχνίτης (Craftsman)
             </p>
           </div>
@@ -190,49 +131,33 @@ export default function StudentDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="gold-card p-6 rounded-xl group hover:shadow-metallic transition-all duration-300 shimmer-effect">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-charcoal text-sm">Active Projects</p>
-                <p className="text-2xl font-bold text-obsidian">{studentData.totalProjects}</p>
-              </div>
-              <BookOpen className="w-8 h-8 text-obsidian group-hover:scale-110 transition-transform" />
-            </div>
+          <div className="swiss-card text-center">
+            <BookOpen className="w-8 h-8 mx-auto mb-2" />
+            <p className="swiss-text-small">Active Projects</p>
+            <p className="text-2xl font-bold">{studentData.totalProjects}</p>
           </div>
           
-          <div className="silver-card p-6 rounded-xl group hover:shadow-metallic transition-all duration-300 shimmer-effect">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-charcoal text-sm">Mentors</p>
-                <p className="text-2xl font-bold text-obsidian">3</p>
-              </div>
-              <Users className="w-8 h-8 text-obsidian group-hover:scale-110 transition-transform" />
-            </div>
+          <div className="swiss-card text-center">
+            <Users className="w-8 h-8 mx-auto mb-2" />
+            <p className="swiss-text-small">Mentors</p>
+            <p className="text-2xl font-bold">3</p>
           </div>
           
-          <div className="dark-metallic-card p-6 rounded-xl group hover:shadow-metallic transition-all duration-300 shimmer-effect">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-silver text-sm">Achievements</p>
-                <p className="text-2xl font-bold text-gold">{studentData.achievements}</p>
-              </div>
-              <Trophy className="w-8 h-8 text-gold group-hover:scale-110 transition-transform" />
-            </div>
+          <div className="swiss-card text-center">
+            <Trophy className="w-8 h-8 mx-auto mb-2" />
+            <p className="swiss-text-small">Achievements</p>
+            <p className="text-2xl font-bold">{studentData.achievements}</p>
           </div>
           
-          <div className="metallic-card p-6 rounded-xl group hover:shadow-metallic transition-all duration-300 shimmer-effect">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-charcoal text-sm">Total XP</p>
-                <p className="text-2xl font-bold text-gold">{studentData.xp}</p>
-              </div>
-              <Zap className="w-8 h-8 text-gold group-hover:scale-110 transition-transform animate-pulse-gold" />
-            </div>
+          <div className="swiss-card text-center">
+            <Zap className="w-8 h-8 mx-auto mb-2" />
+            <p className="swiss-text-small">Total XP</p>
+            <p className="text-2xl font-bold">{studentData.xp}</p>
           </div>
         </div>
 
         {/* Tab Navigation */}
-        <div className="border-b border-gold/20 mb-8">
+        <div className="border-b border-black mb-8">
           <nav className="-mb-px flex space-x-8">
             {[
               { id: 'overview', label: 'Overview' },
@@ -246,8 +171,8 @@ export default function StudentDashboard() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`py-2 px-1 border-b-2 font-medium text-sm transition-colors ${
                   activeTab === tab.id
-                    ? 'border-gold text-gold'
-                    : 'border-transparent text-silver hover:text-gold hover:border-gold/30'
+                    ? 'border-black text-black'
+                    : 'border-transparent text-gray-500 hover:text-black hover:border-gray-300'
                 }`}
               >
                 {tab.label}
@@ -258,34 +183,32 @@ export default function StudentDashboard() {
 
         {/* Tab Content */}
         {activeTab === 'overview' && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="thirds-grid-2x3 gap-8">
             {/* Current Projects */}
-            <div className="lg:col-span-2">
-              <h2 className="text-xl font-serif font-bold gold-text text-shadow-gold mb-4">Current Projects</h2>
+            <div>
+              <h2 className="swiss-heading-md mb-4">Current Projects</h2>
               <div className="space-y-4">
                 {projects.map((project) => (
-                  <div key={project.id} className="metallic-card p-6 rounded-xl hover:shadow-metallic transition-all duration-300 shimmer-effect">
+                  <div key={project.id} className="swiss-card">
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <h3 className="font-semibold text-obsidian mb-1">{project.title}</h3>
-                        <p className="text-charcoal text-sm flex items-center mb-1">
+                        <h3 className="font-semibold mb-1">{project.title}</h3>
+                        <p className="swiss-text-small flex items-center mb-1">
                           <Building2 className="w-4 h-4 mr-1" />
                           {project.company}
                         </p>
-                        <p className="text-charcoal text-sm flex items-center">
+                        <p className="swiss-text-small flex items-center">
                           <User className="w-4 h-4 mr-1" />
                           Mentor: {project.mentor}
                         </p>
                       </div>
                       <div className="text-right">
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          project.status === 'In Progress' 
-                            ? 'bg-gold/20 text-obsidian border border-gold/30'
-                            : 'bg-silver/20 text-obsidian border border-silver/30'
+                        <span className={`swiss-status ${
+                          project.status === 'In Progress' ? 'swiss-status-active' : ''
                         }`}>
                           {project.status}
                         </span>
-                        <div className="flex items-center mt-2 text-xs text-gold">
+                        <div className="flex items-center mt-2 swiss-text-small">
                           <Zap className="w-3 h-3 mr-1" />
                           {project.xpReward} XP
                         </div>
@@ -294,13 +217,13 @@ export default function StudentDashboard() {
                     
                     {project.status === 'In Progress' && (
                       <div className="mb-4">
-                        <div className="flex justify-between text-sm mb-1">
-                          <span className="text-charcoal">Progress</span>
-                          <span className="text-gold font-medium">{project.progress}%</span>
+                        <div className="flex justify-between swiss-text-small mb-1">
+                          <span>Progress</span>
+                          <span className="font-medium">{project.progress}%</span>
                         </div>
-                        <div className="w-full bg-charcoal/30 rounded-full h-2 shadow-inset-metallic">
+                        <div className="swiss-progress">
                           <div 
-                            className="xp-bar h-2 rounded-full transition-all duration-500"
+                            className="swiss-progress-fill"
                             style={{ width: `${project.progress}%` }}
                           ></div>
                         </div>
@@ -308,12 +231,12 @@ export default function StudentDashboard() {
                     )}
                     
                     <div className="flex justify-between items-center">
-                      <div className="flex items-center text-sm text-charcoal">
+                      <div className="flex items-center swiss-text-small">
                         <Calendar className="w-4 h-4 mr-1" />
                         Due {project.deadline}
                       </div>
-                      <button className="text-gold hover:text-gold-light transition-colors">
-                        <ArrowRight className="w-4 h-4" />
+                      <button className="swiss-btn">
+                        View Details
                       </button>
                     </div>
                   </div>
@@ -324,17 +247,17 @@ export default function StudentDashboard() {
             {/* Sidebar */}
             <div className="space-y-6">
               {/* Recent Achievements */}
-              <div className="dark-metallic-card p-6 rounded-xl shimmer-effect">
-                <h3 className="font-serif font-semibold text-gold mb-4">Recent Achievements</h3>
+              <div className="swiss-card">
+                <h3 className="swiss-heading-md mb-4">Recent Achievements</h3>
                 <div className="space-y-3">
                   {achievements.filter(a => a.earned).slice(0, 3).map((achievement) => (
                     <div key={achievement.id} className="flex items-center space-x-3">
-                      <div className="achievement-badge w-8 h-8 rounded-full flex items-center justify-center text-sm">
+                      <div className="w-8 h-8 border border-black flex items-center justify-center text-sm">
                         {achievement.icon}
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-gold">{achievement.name}</p>
-                        <p className="text-xs text-silver">{achievement.description}</p>
+                        <p className="swiss-text-small font-medium">{achievement.name}</p>
+                        <p className="swiss-text-small text-gray-600">{achievement.description}</p>
                       </div>
                     </div>
                   ))}
@@ -342,43 +265,43 @@ export default function StudentDashboard() {
               </div>
 
               {/* Upcoming Sessions */}
-              <div className="silver-card p-6 rounded-xl shimmer-effect">
-                <h3 className="font-serif font-semibold text-obsidian mb-4">Upcoming Sessions</h3>
+              <div className="swiss-card">
+                <h3 className="swiss-heading-md mb-4">Upcoming Sessions</h3>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-gold rounded-full animate-pulse-gold"></div>
+                    <div className="w-2 h-2 bg-black"></div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-obsidian">Mentor Check-in</p>
-                      <p className="text-xs text-charcoal">Today, 2:00 PM</p>
+                      <p className="swiss-text-small font-medium">Mentor Check-in</p>
+                      <p className="swiss-text-small text-gray-600">Today, 2:00 PM</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-silver rounded-full"></div>
+                    <div className="w-2 h-2 bg-gray-400"></div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-obsidian">Project Review</p>
-                      <p className="text-xs text-charcoal">Tomorrow, 10:00 AM</p>
+                      <p className="swiss-text-small font-medium">Project Review</p>
+                      <p className="swiss-text-small text-gray-600">Tomorrow, 10:00 AM</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Quick Stats */}
-              <div className="gold-card p-6 rounded-xl shimmer-effect">
-                <h3 className="font-serif font-semibold text-obsidian mb-4">Your Progress</h3>
+              <div className="swiss-card">
+                <h3 className="swiss-heading-md mb-4">Your Progress</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-charcoal text-sm">Projects Completed</span>
-                    <span className="font-medium text-obsidian">{studentData.completedProjects}</span>
+                    <span className="swiss-text-small">Projects Completed</span>
+                    <span className="font-medium">{studentData.completedProjects}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-charcoal text-sm">Success Rate</span>
-                    <span className="font-medium text-obsidian">95%</span>
+                    <span className="swiss-text-small">Success Rate</span>
+                    <span className="font-medium">95%</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-charcoal text-sm">Mentor Rating</span>
+                    <span className="swiss-text-small">Mentor Rating</span>
                     <div className="flex items-center">
-                      <Star className="w-4 h-4 text-gold fill-current" />
-                      <span className="font-medium ml-1 text-obsidian">4.8</span>
+                      <Star className="w-4 h-4 mr-1" />
+                      <span className="font-medium">4.8</span>
                     </div>
                   </div>
                 </div>
@@ -390,32 +313,28 @@ export default function StudentDashboard() {
         {activeTab === 'achievements' && (
           <div className="space-y-6">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-serif font-bold gold-text text-shadow-gold mb-2">Hall of Achievements</h2>
-              <p className="text-silver">Your journey through the pantheon of excellence</p>
+              <h2 className="swiss-heading-lg mb-2">Hall of Achievements</h2>
+              <p className="swiss-text">Your journey through the pantheon of excellence</p>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {achievements.map((achievement) => (
-                <div key={achievement.id} className={`p-6 rounded-xl text-center transition-all duration-300 shimmer-effect ${
-                  achievement.earned 
-                    ? 'gold-card hover:shadow-metallic hover:scale-105' 
-                    : 'dark-metallic-card opacity-60 grayscale'
+                <div key={achievement.id} className={`swiss-card text-center ${
+                  achievement.earned ? '' : 'opacity-60'
                 }`}>
-                  <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl ${
-                    achievement.earned 
-                      ? 'achievement-badge' 
-                      : 'bg-charcoal/50'
+                  <div className={`w-16 h-16 border-2 flex items-center justify-center mx-auto mb-4 text-2xl ${
+                    achievement.earned ? 'border-black' : 'border-gray-300'
                   }`}>
                     {achievement.icon}
                   </div>
-                  <h3 className={`font-serif font-bold mb-2 ${achievement.earned ? 'text-obsidian' : 'text-silver'}`}>
+                  <h3 className="swiss-heading-md mb-2">
                     {achievement.name}
                   </h3>
-                  <p className={`text-sm ${achievement.earned ? 'text-charcoal' : 'text-silver/70'}`}>
+                  <p className="swiss-text-small">
                     {achievement.description}
                   </p>
                   {achievement.earned && (
-                    <div className="mt-3 flex items-center justify-center text-xs text-gold">
+                    <div className="mt-3 flex items-center justify-center swiss-text-small">
                       <Award className="w-3 h-3 mr-1" />
                       Earned
                     </div>
@@ -426,23 +345,22 @@ export default function StudentDashboard() {
           </div>
         )}
 
-        {/* Other tabs with similar metallic styling... */}
         {activeTab === 'projects' && (
           <div className="space-y-6">
             <div className="flex justify-between items-center">
-              <h2 className="text-xl font-serif font-bold gold-text text-shadow-gold">My Projects</h2>
-              <button className="metallic-button text-obsidian px-4 py-2 rounded-lg font-semibold shadow-gold hover:shadow-metallic transform hover:-translate-y-1 transition-all duration-300">
+              <h2 className="swiss-heading-lg">My Projects</h2>
+              <Link href="/projects" className="swiss-btn swiss-btn-primary">
                 Apply to New Project
-              </button>
+              </Link>
             </div>
             
             <div className="grid gap-6">
               {projects.map((project) => (
-                <div key={project.id} className="metallic-card p-6 rounded-xl hover:shadow-metallic transition-all duration-300 shimmer-effect">
+                <div key={project.id} className="swiss-card">
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h3 className="text-lg font-semibold text-obsidian mb-2">{project.title}</h3>
-                      <div className="flex items-center space-x-4 text-sm text-charcoal">
+                      <h3 className="swiss-heading-md mb-2">{project.title}</h3>
+                      <div className="flex items-center space-x-4 swiss-text-small">
                         <span className="flex items-center">
                           <Building2 className="w-4 h-4 mr-1" />
                           {project.company}
@@ -458,14 +376,12 @@ export default function StudentDashboard() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        project.status === 'In Progress' 
-                          ? 'bg-gold/20 text-obsidian border border-gold/30'
-                          : 'bg-silver/20 text-obsidian border border-silver/30'
+                      <span className={`swiss-status ${
+                        project.status === 'In Progress' ? 'swiss-status-active' : ''
                       }`}>
                         {project.status}
                       </span>
-                      <div className="flex items-center mt-2 text-xs text-gold">
+                      <div className="flex items-center mt-2 swiss-text-small">
                         <Zap className="w-3 h-3 mr-1" />
                         {project.xpReward} XP
                       </div>
@@ -474,13 +390,13 @@ export default function StudentDashboard() {
                   
                   {project.status === 'In Progress' && (
                     <div className="mb-4">
-                      <div className="flex justify-between text-sm mb-2">
-                        <span className="text-charcoal">Progress</span>
-                        <span className="text-gold font-medium">{project.progress}%</span>
+                      <div className="flex justify-between swiss-text-small mb-2">
+                        <span>Progress</span>
+                        <span className="font-medium">{project.progress}%</span>
                       </div>
-                      <div className="w-full bg-charcoal/30 rounded-full h-2 shadow-inset-metallic">
+                      <div className="swiss-progress">
                         <div 
-                          className="xp-bar h-2 rounded-full transition-all duration-500"
+                          className="swiss-progress-fill"
                           style={{ width: `${project.progress}%` }}
                         ></div>
                       </div>
@@ -490,12 +406,12 @@ export default function StudentDashboard() {
                   <div className="flex justify-between items-center">
                     <div className="flex flex-wrap gap-2">
                       {project.skills.map((skill) => (
-                        <span key={skill} className="px-2 py-1 bg-gold/20 text-obsidian text-xs rounded-full border border-gold/30">
+                        <span key={skill} className="swiss-status">
                           {skill}
                         </span>
                       ))}
                     </div>
-                    <button className="metallic-button text-obsidian px-4 py-2 rounded-lg font-semibold shadow-gold hover:shadow-metallic transform hover:-translate-y-1 transition-all duration-300">
+                    <button className="swiss-btn">
                       View Details
                     </button>
                   </div>
@@ -504,8 +420,6 @@ export default function StudentDashboard() {
             </div>
           </div>
         )}
-
-        {/* Continue with other tabs using similar metallic styling patterns... */}
       </div>
     </div>
   )
